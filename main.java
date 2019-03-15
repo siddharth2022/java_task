@@ -1,6 +1,5 @@
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
 class Java_task{
 	
     static Scanner sc = new Scanner(System.in);
@@ -26,36 +25,36 @@ class Java_task{
             list[i]=student[i].split(" ");
             cgpa[i]=-1;
             if(list[i][0].equals("ENTER")){
-                taken_action[i]=0;//for ENTER event
+                taken_action[i]=0;
             }
             else{
-                taken_action[i]=1;//for SERVED event
+                taken_action[i]=1;
             }
         }
         
     }
    
-	private String[][] store(String[][] array, String[] store) {
-        String[][] longer = new String[array.length + 1][];
-        for (int i = 0; i < array.length; i++){
-            longer[i] = array[i];
+	private String[][] store(String[][] ar, String[] store) {
+        String[][] var_t = new String[ar.length + 1][];
+        for (int i = 0; i < ar.length; i++){
+            var_t[i] = ar[i];
         }
-        longer[array.length] = store;
-        return longer;
+        var_t[ar.length] = store;
+        return var_t;
     }
 	
 	
 	
-    private String[][] retrieve(String[][] array){
-        if(array.length == 0){
-            return array;
+    private String[][] retrieve(String[][] ar){
+        if(ar.length == 0){
+            return ar;
         }
         else{
-            String[][] longer = new String[array.length - 1][];
-            for (int i = 1; i < array.length; i++){
-                longer[i-1] = array[i];
+            String[][] var_t = new String[ar.length - 1][];
+            for (int i = 1; i < ar.length; i++){
+                var_t[i-1] = ar[i];
             }
-            return longer;
+            return var_t;
         }
     }
 
@@ -85,29 +84,27 @@ class Java_task{
     }
    
 
-   String[][] priority(String[][] array){
+   String[][] priority(String[][] ar){
         String[] n1,n2;
         n2=new String[2];
         float num1,num2;
-        for(int i=0;i<array.length-1;i++){
-            for(int j=0;j<array.length-i-1;j++){
-                num1=Float.parseFloat(array[j][2]);
-                num2=Float.parseFloat(array[j+1][2]);
+        for(int i=0;i<ar.length-1;i++){
+            for(int j=0;j<ar.length-i-1;j++){
+                num1=Float.parseFloat(ar[j][2]);
+                num2=Float.parseFloat(ar[j+1][2]);
                 if(num1<num2){
-                    n1=array[j];
-                    array[j]=array[j+1];
-                    array[j+1]=n1;
+                    n1=ar[j];ar[j]=ar[j+1];ar[j+1]=n1;
                 }
                 else if(num1==num2){
-                    n2[0]=array[j][1];
-                    n2[1]=array[j+1][1];
+                    n2[0]=ar[j][1];
+                    n2[1]=ar[j+1][1];
                     if(n2[0].equals(n2[1])){
-                        int tm1=Integer.parseInt(array[j][3]);
-                        int tm2=Integer.parseInt(array[j+1][3]);
+                        int tm1=Integer.parseInt(ar[j][3]);
+                        int tm2=Integer.parseInt(ar[j+1][3]);
                         if(tm1>tm2){
-                            n1=array[j];
-                            array[j]=array[j+1];
-                            array[j+1]=n1;
+                            n1=ar[j];
+                            ar[j]=ar[j+1];
+                            ar[j+1]=n1;
                         }
                     }
                     else{
@@ -115,9 +112,9 @@ class Java_task{
                         List tls;
                         Arrays.sort(n2);
                         if(n2[0].equals(tm)){
-                            n1=array[j];
-                            array[j]=array[j+1];
-                            array[j+1]=n1;
+                            n1=ar[j];
+                            ar[j]=ar[j+1];
+                            ar[j+1]=n1;
                         }
                     }
                 }
